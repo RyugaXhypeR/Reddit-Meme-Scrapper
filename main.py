@@ -35,6 +35,7 @@ submission = random.sample(all_sub, NO_OF_MEMES)
 for i in range(LOOP):
     url = submission[i].url
     title = submission[i].title
+    #if image_check(url) == True:      --> you can enable this you dont want to download .gif
     print(url)
     r = requests.get(url).content
     with open(f"{folder_name}/{title}.jpg", "wb+") as f:
