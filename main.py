@@ -34,7 +34,7 @@ all_sub = [i for i in lim]
 
 
 submission = random.sample(all_sub, NO_OF_MEMES)
-for i in range(LOOP):
+for i in range(NO_OF_MEMES):
     url = submission[i].url
     title = submission[i].title
     
