@@ -26,6 +26,8 @@ reddit = praw.Reddit(
             user_agent = "",
 )
 
+INVALID_SYM = ("*", ".", "'", "?")
+
 subreddit = reddit.subreddit(SUBREDDIT_NAME)
 lim = subreddit.top(limit=LIMIT)
 all_sub = [i for i in lim]
@@ -35,6 +37,11 @@ submission = random.sample(all_sub, NO_OF_MEMES)
 for i in range(LOOP):
     url = submission[i].url
     title = submission[i].title
+    
+    for i in title:
+        if i in INVALID_SYM:
+            title = title.replace(i, "-")    
+    
     #if image_check(url) == True:      --> you can enable this you dont want to download .gif
     print(url)
     r = requests.get(url).content
