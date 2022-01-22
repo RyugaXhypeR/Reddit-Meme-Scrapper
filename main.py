@@ -26,7 +26,7 @@ reddit = praw.Reddit(
             user_agent = "",
 )
 
-INVALID_SYM = ("*", ".", "'", "?")
+INVALID_SYM = (",", ".", "'", "*", "?", "/", "_", '"', "!")
 
 subreddit = reddit.subreddit(SUBREDDIT_NAME)
 lim = subreddit.top(limit=LIMIT)
@@ -38,12 +38,12 @@ for i in range(LOOP):
     url = submission[i].url
     title = submission[i].title
     
-    for i in title:
-        if i in INVALID_SYM:
-            title = title.replace(i, "-")    
+    for j in title:
+        if j in INVALID_SYM:
+            title = title.replace(j, "-")    
     
     #if image_check(url) == True:      --> you can enable this you dont want to download .gif
-    print(url)
+    print(f"{i+1}. {url}")
     r = requests.get(url).content
     with open(f"{folder_name}/{title}.jpg", "wb+") as f:
         f.write(r)
