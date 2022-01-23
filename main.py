@@ -26,7 +26,7 @@ reddit = praw.Reddit(
             user_agent = "",
 )
 
-INVALID_SYM = (",", ".", "'", "*", "?", "/", "_", '"', "!")
+VALID_SYM = ('abcdefghijklmnopqrstuvwxyz')
 
 subreddit = reddit.subreddit(SUBREDDIT_NAME)
 lim = subreddit.top(limit=LIMIT)
@@ -39,7 +39,7 @@ for i in range(NO_OF_MEMES):
     title = submission[i].title
     
     for j in title:
-        if j in INVALID_SYM:
+        if j.lower not in VALID_SYM:
             title = title.replace(j, "-")    
     
     #if image_check(url) == True:      --> you can enable this you dont want to download .gif
